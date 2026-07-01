@@ -25,7 +25,7 @@ attempts are made.
   "mcpServers": {
     "etzhayyim-yorishiro-argparse-sub": {
       "command": "node",
-      "args": ["/path/to/repo/20-actors/kotoba-kotodama/mcp/yorishiro-argparse-sub-mcp/src/cli.ts"]
+      "args": ["/path/to/repo/kotoba-lang/kotodama-mcp/yorishiro-argparse-sub-mcp/src/cli.ts"]
     }
   }
 }

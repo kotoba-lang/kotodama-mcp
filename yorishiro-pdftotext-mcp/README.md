@@ -23,7 +23,7 @@ attempts are made.
   "mcpServers": {
     "etzhayyim-yorishiro-pdftotext": {
       "command": "node",
-      "args": ["/path/to/repo/20-actors/kotoba-kotodama/mcp/yorishiro-pdftotext-mcp/src/cli.ts"]
+      "args": ["/path/to/repo/kotoba-lang/kotodama-mcp/yorishiro-pdftotext-mcp/src/cli.ts"]
     }
   }
 }

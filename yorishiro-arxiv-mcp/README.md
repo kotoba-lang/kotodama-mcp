@@ -20,7 +20,7 @@ Each tool's input schema is the zod 4 mirror of the matching lexicon at
   "mcpServers": {
     "etzhayyim-yorishiro-arxiv": {
       "command": "node",
-      "args": ["/path/to/repo/20-actors/kotoba-kotodama/mcp/yorishiro-arxiv-mcp/src/cli.ts"],
+      "args": ["/path/to/repo/kotoba-lang/kotodama-mcp/yorishiro-arxiv-mcp/src/cli.ts"],
       "env": {
         "YORISHIRO_ARXIV_BASE_URL": "http://export.arxiv.org/api"
       }

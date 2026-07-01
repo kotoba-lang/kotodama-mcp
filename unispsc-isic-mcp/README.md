@@ -37,7 +37,7 @@ binary that speaks MCP over stdio. Example Claude Desktop config:
   "mcpServers": {
     "etzhayyim-unispsc-isic": {
       "command": "node",
-      "args": ["/path/to/repo/20-actors/kotoba-kotodama/mcp/unispsc-isic-mcp/src/cli.ts"],
+      "args": ["/path/to/repo/kotoba-lang/kotodama-mcp/unispsc-isic-mcp/src/cli.ts"],
       "env": {
         "LG_UNISPSC_ENDPOINT": "https://lg-open-unispsc.etzhayyim.com",
         "LG_ISIC_ENDPOINT": "https://lg-open-isic.etzhayyim.com"
@@ -77,7 +77,7 @@ await server.connect(transport);
 ## Tests
 
 ```
-$ vitest run 20-actors/kotoba-kotodama/mcp/unispsc-isic-mcp/test/
+$ vitest run kotoba-lang/kotodama-mcp/unispsc-isic-mcp/test/
 Test Files  2 passed (2)
      Tests  25 passed (25)
 ```
@@ -90,7 +90,7 @@ Test Files  2 passed (2)
 - `00-contracts/lexicons/com/etzhayyim/apps/isic/*.json` — Lexicon contracts (Phase 1)
 - `50-infra/k8s/lg-open-unispsc/` — UNSPSC langserver pod (Phase 4)
 - `50-infra/k8s/lg-open-isic/` — ISIC langserver pod (Phase 5)
-- `20-actors/kotoba-kotodama/sdk/kotoba-kotodama-host-sdk/src/langserver-actor.ts` — Kotodama actor wrapper (Phase 6)
+- `kotoba-lang/kotodama-host:sdk/kotodama-host-sdk/src/langserver-actor.ts` — Kotodama actor wrapper (Phase 6)
 - ADR-2605180900 (`90-docs/adr/`) — full architecture
 
 ## Substrate rules honored

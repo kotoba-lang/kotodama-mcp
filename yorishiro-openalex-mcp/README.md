@@ -21,7 +21,7 @@ Each tool's input schema is the zod 4 mirror of the matching lexicon at
   "mcpServers": {
     "etzhayyim-yorishiro-openalex": {
       "command": "node",
-      "args": ["/path/to/repo/20-actors/kotoba-kotodama/mcp/yorishiro-openalex-mcp/src/cli.ts"],
+      "args": ["/path/to/repo/kotoba-lang/kotodama-mcp/yorishiro-openalex-mcp/src/cli.ts"],
       "env": {
         "YORISHIRO_OPENALEX_BASE_URL": "https://api.openalex.org"
       }

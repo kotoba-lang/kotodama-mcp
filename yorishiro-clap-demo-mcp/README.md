@@ -23,7 +23,7 @@ attempts are made.
   "mcpServers": {
     "etzhayyim-yorishiro-clap-demo": {
       "command": "node",
-      "args": ["/path/to/repo/20-actors/kotoba-kotodama/mcp/yorishiro-clap-demo-mcp/src/cli.ts"]
+      "args": ["/path/to/repo/kotoba-lang/kotodama-mcp/yorishiro-clap-demo-mcp/src/cli.ts"]
     }
   }
 }

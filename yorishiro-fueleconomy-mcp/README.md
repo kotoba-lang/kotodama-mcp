@@ -20,7 +20,7 @@ Each tool's input schema is the zod 4 mirror of the matching lexicon at
   "mcpServers": {
     "etzhayyim-yorishiro-fueleconomy": {
       "command": "node",
-      "args": ["/path/to/repo/20-actors/kotoba-kotodama/mcp/yorishiro-fueleconomy-mcp/src/cli.ts"],
+      "args": ["/path/to/repo/kotoba-lang/kotodama-mcp/yorishiro-fueleconomy-mcp/src/cli.ts"],
       "env": {
         "YORISHIRO_FUELECONOMY_BASE_URL": "https://www.fueleconomy.gov"
       }
