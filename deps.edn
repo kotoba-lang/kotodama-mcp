@@ -1,5 +1,5 @@
 {:paths ["src" "resources"]
- :deps {io.github.kotoba-lang/mcp {:local/root "../mcp"}}
+ :deps {io.github.kotoba-lang/org-anthropic-mcp {:local/root "../org-anthropic-mcp"}}
  :aliases
  {:test {:extra-paths ["test"]
          :extra-deps {io.github.cognitect-labs/test-runner
