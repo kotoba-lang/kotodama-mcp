@@ -5,11 +5,11 @@
   are EDN/.cljc authority. Legacy TypeScript providers are not part of the
   runtime contract."
   (:require [clojure.edn :as edn]
-            [clojure.java.io :as io]
+            #?(:clj [clojure.java.io :as io])
             [clojure.set :as set]
             [clojure.string :as string]
             [mcp.validate :as mcp.validate])
-  (:import [java.security MessageDigest]))
+  #?(:clj (:import [java.security MessageDigest])))
 
 (def component-exports
   #{:mcp/initialize :mcp/tools-list :mcp/tools-call :mcp/resources-list :mcp/prompts-list})
@@ -153,52 +153,60 @@
       (field-error port :kotodama.mcp/capability keyword?
                    ":kotodama.mcp/capability must be a keyword")))))
 
-(defn load-manifests
-  "Load EDN MCP manifests from resources. The returned map is keyed by package
-  directory name."
-  []
-  (-> "kotodama_mcp/manifests.edn"
-      io/resource
-      slurp
-      edn/read-string
-      :kotodama.mcp/manifests))
+#?(:clj
+   (defn load-manifests
+     "Load EDN MCP manifests from resources. The returned map is keyed by package
+     directory name."
+     []
+     (-> "kotodama_mcp/manifests.edn"
+         io/resource
+         slurp
+         edn/read-string
+         :kotodama.mcp/manifests)))
 
-(defn load-provider-catalog []
-  (-> provider-catalog-resource
-      io/resource
-      slurp
-      edn/read-string))
+#?(:clj
+   (defn load-provider-catalog []
+     (-> provider-catalog-resource
+         io/resource
+         slurp
+         edn/read-string)))
 
-(defn load-provider-tools []
-  (-> provider-tools-resource
-      io/resource
-      slurp
-      edn/read-string
-      :kotodama.mcp/tool-artifacts))
+#?(:clj
+   (defn load-provider-tools []
+     (-> provider-tools-resource
+         io/resource
+         slurp
+         edn/read-string
+         :kotodama.mcp/tool-artifacts)))
 
-(defn load-provider-tool-sources []
-  (-> provider-tool-sources-resource
-      io/resource
-      slurp
-      edn/read-string
-      :kotodama.mcp/provider-tool-sources))
+#?(:clj
+   (defn load-provider-tool-sources []
+     (-> provider-tool-sources-resource
+         io/resource
+         slurp
+         edn/read-string
+         :kotodama.mcp/provider-tool-sources)))
 
-(defn load-provider-sources []
-  (-> provider-sources-resource
-      io/resource
-      slurp
-      edn/read-string
-      :kotodama.mcp/provider-sources))
+#?(:clj
+   (defn load-provider-sources []
+     (-> provider-sources-resource
+         io/resource
+         slurp
+         edn/read-string
+         :kotodama.mcp/provider-sources)))
 
-(defn- file-bytes [path]
-  (java.nio.file.Files/readAllBytes (.toPath (io/file path))))
+#?(:clj
+   (defn- file-bytes [path]
+     (java.nio.file.Files/readAllBytes (.toPath (io/file path)))))
 
-(defn- hex-byte [b]
-  (format "%02x" (bit-and b 0xff)))
+#?(:clj
+   (defn- hex-byte [b]
+     (format "%02x" (bit-and b 0xff))))
 
-(defn- sha256-bytes [bytes]
-  (let [digest (.digest (MessageDigest/getInstance "SHA-256") bytes)]
-    (apply str (map hex-byte digest))))
+#?(:clj
+   (defn- sha256-bytes [bytes]
+     (let [digest (.digest (MessageDigest/getInstance "SHA-256") bytes)]
+       (apply str (map hex-byte digest)))))
 
 (defn validate-manifest [manifest]
   (let [problems (mcp.validate/problems manifest)
@@ -499,20 +507,21 @@
 (defn provider-tool-sources? [sources manifests]
   (:valid? (validate-provider-tool-sources sources manifests)))
 
-(defn legacy-provider-source-paths []
-  (->> (file-seq (io/file "."))
-       (filter #(.isFile %))
-       (map #(.getPath %))
-       (filter #(or (string/ends-with? % ".ts")
-                    (string/ends-with? % ".tsx")
-                    (string/ends-with? % ".js")
-                    (string/ends-with? % ".mjs")
-                    (= "package.json" (.getName (io/file %)))
-                    (= "tsconfig.json" (.getName (io/file %)))))
-       (remove #(string/includes? % "/node_modules/"))
-       (map #(string/replace-first % #"^\./" ""))
-       sort
-       set))
+#?(:clj
+   (defn legacy-provider-source-paths []
+     (->> (file-seq (io/file "."))
+          (filter #(.isFile %))
+          (map #(.getPath %))
+          (filter #(or (string/ends-with? % ".ts")
+                       (string/ends-with? % ".tsx")
+                       (string/ends-with? % ".js")
+                       (string/ends-with? % ".mjs")
+                       (= "package.json" (.getName (io/file %)))
+                       (= "tsconfig.json" (.getName (io/file %)))))
+          (remove #(string/includes? % "/node_modules/"))
+          (map #(string/replace-first % #"^\./" ""))
+          sort
+          set)))
 
 (defn- validate-provider-source [manifest-packages source index]
   (if-not (map? source)
