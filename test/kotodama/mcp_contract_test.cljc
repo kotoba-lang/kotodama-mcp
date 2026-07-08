@@ -44,12 +44,12 @@
 (deftest component-wit-artifact
   (testing "emits WIT from EDN/CLJC boundary authority"
     (let [wit (contract/component-wit)]
-      (is (= (slurp (io/file "wit" "kotodama-mcp-tool.wit")) wit))
+      #?(:clj (is (= (slurp (io/file "wit" "kotodama-mcp-tool.wit")) wit)))
       (is (re-find #"world kotodama-mcp-tool" wit))
       (is (re-find #"export tools-call" wit))))
   (testing "does not emit WIT for invalid non-component boundaries"
     (is (thrown-with-msg?
-         clojure.lang.ExceptionInfo
+         #?(:clj clojure.lang.ExceptionInfo :cljs js/Error)
          #"cannot emit WIT"
          (contract/boundary->wit
           {:kotodama.mcp/world :kotodama/mcp-tool
