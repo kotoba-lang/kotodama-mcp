@@ -1,5 +1,6 @@
 {:paths ["src" "resources"]
- :deps {io.github.kotoba-lang/org-anthropic-mcp {:local/root "../org-anthropic-mcp"}}
+ :deps {io.github.kotoba-lang/org-anthropic-mcp {:git/url "https://github.com/kotoba-lang/org-anthropic-mcp.git"
+                                     :git/sha "9b343e64139763d66c2a3969669bc03f73b32a46"}}
  :aliases
  {:test {:extra-paths ["test"]
          :extra-deps {io.github.cognitect-labs/test-runner
