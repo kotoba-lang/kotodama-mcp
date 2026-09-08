@@ -7,7 +7,7 @@
   (:require [clojure.edn :as edn]
             #?(:clj [clojure.java.io :as io])
             [clojure.set :as set]
-            [clojure.string :as string]
+            [kotoba.lang.text :as string]
             [mcp.validate :as mcp.validate])
   #?(:clj (:import [java.security MessageDigest])))
 
