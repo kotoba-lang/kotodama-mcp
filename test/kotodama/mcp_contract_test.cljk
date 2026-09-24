@@ -1,5 +1,5 @@
 (ns kotodama.mcp-contract-test
-  (:require [clojure.java.io :as io]
+  (:require [kotoba.io :as io]
             [kotoba.test :refer [deftest is testing]]
             [kotodama.mcp-contract :as contract]
             [mcp.validate :as mcp.validate]))
