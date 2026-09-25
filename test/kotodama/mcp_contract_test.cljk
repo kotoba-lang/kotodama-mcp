@@ -1,5 +1,5 @@
 (ns kotodama.mcp-contract-test
-  (:require [kotoba.io :as io]
+  (:require [kotoba.lang.error :as kerror] [kotoba.io :as io]
             [kotoba.test :refer [deftest is testing]]
             [kotodama.mcp-contract :as contract]
             [mcp.validate :as mcp.validate]))
@@ -49,7 +49,7 @@
       (is (re-find #"export tools-call" wit))))
   (testing "does not emit WIT for invalid non-component boundaries"
     (is (thrown-with-msg?
-         clojure.lang.ExceptionInfo
+         kerror/ExceptionInfo
          #"cannot emit WIT"
          (contract/boundary->wit
           {:kotodama.mcp/world :kotodama/mcp-tool
